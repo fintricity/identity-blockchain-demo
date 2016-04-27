@@ -1,19 +1,19 @@
 contract Owned {
 	address owner;
 
-	Owned() {
-		owner = msg.sender
+	function Owned() {
+		owner = msg.sender;
 	}
 
-	kill() {
+	function kill() {
 		if (msg.sender != owner) {
 			throw;
 		}
-		suicide(owner) // Sends all funds to the owners account
+		suicide(owner); // Sends all funds to the owners account
 	}
 
 	modifier onlyOwner {
-		if msg.sender == owner {
+		if (msg.sender == owner) {
 			_ // Carry on execution
 		}
 	}

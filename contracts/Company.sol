@@ -1,4 +1,4 @@
-import Owned from "Owner.sol"
+import {Owned} from "Owned.sol";
 
 contract Company is Owned {
 	string LEI;
@@ -7,18 +7,22 @@ contract Company is Owned {
 	string Region;
 	string EntityStatus;
 	string OfficialRegistry;
-	string OfficialRegistryRef;
+	string RegRef;
+
+	event LogOwner(address _owner);
 
 	// Construct values
-	Company(_LEI,_OfficialEntityName,_Address,_Region,_EntityStatus,_OfficialRegistry,_OfficialRegistryRef) {
+	function Company(string _LEI, string _OfficialEntityName, string _Address, string _Region, string _OfficialRegistry, string _RegRef) Owned() {
 		LEI = _LEI;
 		OfficialEntityName = _OfficialEntityName;
 		Address = _Address;
 		Region = _Region;
-		EntityStatus = _EntityStatus;
 		OfficialRegistry = _OfficialRegistry;
-		OfficialRegistryRef = _OfficialRegistryRef;
+		RegRef = _RegRef;
 	}
-		
 
+	function getOwner() returns (address) {
+		LogOwner(owner);
+		return owner;
+	}
 }
