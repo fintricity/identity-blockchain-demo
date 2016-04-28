@@ -1,4 +1,6 @@
 contract('Company', function(accounts) {
+  
+  // Constructor for defaultu Deutchse bank company
   function defaultCompany() {
       return Company.new(
         "7LTWFZYICNSX8D621K86",
@@ -6,18 +8,15 @@ contract('Company', function(accounts) {
         "Taunusanlage 12, Frankfurt am Main, 60325",
         "DE",
         "Frankfurt am Main",
-        "HRB 30000"
-      , {from: accounts[0]})
+        "HRB 30000",
+        {from: accounts[0]})
   }
 
-  it("should create a company with an owner", function(done) {
-    // var Company = Company.at(Company.deployed_address);
-
+  it("should create a company addredss of owner who creates company", function(done) {
     defaultCompany().then(function(company) {
-      company.Owner.owner.call().then(function(address) {
-        console.log(typeof address)
+      company.owner.call().then(function(address) {
         assert.isNotNull(address, "Expected an owners address!")
-        assert.equal(web3.toAddress(address), web3.toHex(accounts[0]), "Owner address is not the same as account who created company!")
+        assert.equal(address, accounts[0], "Owner address is not the same as account who created company!")
         done()
       }).catch(done)
     }).catch(done);

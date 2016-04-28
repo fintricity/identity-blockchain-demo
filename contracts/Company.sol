@@ -10,6 +10,7 @@ contract Company is Owned {
 	string RegRef;
 
 	event LogOwner(address _owner);
+	event LogLei(string LEI);
 
 	// Construct values
 	function Company(string _LEI, string _OfficialEntityName, string _Address, string _Region, string _OfficialRegistry, string _RegRef) Owned() {
@@ -21,8 +22,12 @@ contract Company is Owned {
 		RegRef = _RegRef;
 	}
 
-	function getOwner() returns (address) {
-		LogOwner(owner);
-		return owner;
-	}
+	// TODO
+	function issueShares()
+
+	// Buy Shares.
+	function buyShares();
+
+	// sell them.
+	function sellShares();
 }
